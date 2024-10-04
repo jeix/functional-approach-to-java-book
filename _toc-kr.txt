@@ -1,0 +1,559 @@
+함수형 프로그래밍 with 자바 - 함수형 프로그래밍을 적용하여 객체 지향 자바 코드 향상시키기
+A Functional Approach to Java: Augmenting Object-Oriented Java Code with Functional Principles (2023)
+Ben Weidig, 허귀영, 한빛미디어, 979-11-6921-217-5, 24-03, 528, 235 x 183
+
+=====	========================================
+		[PART Ⅰ 함수형 기초]
+
+=====	========================================
+		CHAPTER 1 함수형 프로그래밍 소개
+
+[033]	1.1 어떤 것이 언어를 '함수형'으로 만드는가?
+[037]	1.2 함수형 프로그래밍의 개념
+[037]		1.2.1 순수 함수와 참조 투명성
+[039]		1.2.2 불변성
+[040]		1.2.3 재귀
+[041]		1.2.4 일급 함수와 고차 함수
+[041]		1.2.5 함수 합성
+[042]		1.2.6 커링
+[043]		1.2.7 부분 적용 함수 애플리케이션
+[044]		1.2.8 느긋한 계산법
+[045]	1.3 함수형 프로그래밍의 장점
+[046]	1.4 함수형 프로그래밍의 단점
+[048]	핵심 요약
+
+=====	========================================
+		CHAPTER 2 함수형 자바
+
+[049]	2.1 자바 람다란?
+[050]		2.1.1 람다 문법
+					[ex-2-1] 동일한 람다를 다양한 방법으로 작성하는 방법
+[052]		2.1.2 함수형 인터페이스
+					[ex-2-2] 간단한 java.util.function.Predicate<T>
+[055]		2.1.3 람다와 외부 변수
+					[ex-2-3] 람다 변수 캡처
+[057]			= Effectively final
+					[ex-2-4] final 변수 데이터 변경하기
+[058]			= 참조를 다시 final로 만들기
+					[ex-2-5] Re-finalize reference
+[059]		2.1.4 익명 클래스는 무엇인가?
+					[ex-2-6] 익명 클래스와 람다 표현식 비교
+					[ex-2-7] 익명 클래스와 람다의 바이트 코드 차이점
+[063]	2.2 람다의 실전 활용
+[064]		2.2.1 람다 생성
+[066]		2.2.2 람다 호출
+[067]		2.2.3 메서드 참조
+					[ex-2-8] 메서드 참조와 스트림
+[069]			= 정적 메서드 참조
+					method-references/Static.java
+[069]			= 바운드 비정적 메서드 참조
+					method-references/BoundNonStatic.java
+					method-references/BoundNonStaticThisSuper.java
+[071]			= 언바운드 비정적 메서드 참조
+					method-references/UnboundNonStatic.java
+[072]			= 생성자 참조
+					method-references/Constructor.java
+[073]	2.3 자바의 함수형 프로그래밍 개념
+[073]		2.3.1 순수 함수와 참조 투명성
+					[ex-2-9] Map#computeIfAbsent 로 구현한 메모이제이션
+[077]		2.3.2 불변성
+[077]		2.3.3 일급 객체
+					[ex-2-10] 일급 객체인 자바 람다
+[079]		2.3.4 함수 합성
+[080]			= 느긋한 계산법
+[080]	핵심 요약
+
+=====	========================================
+		CHAPTER 3 JDK의 함수형 인터페이스
+
+[082]	3.1 네 가지 함수형 인터페이스
+[083]		3.1.1 Function
+					figure-3-1/FunctionExample.java
+[084]		3.1.2 Consumer
+					figure-3-2/ConsumerExample.java
+[085]		3.1.3 Supplier
+					figure-3-3/SupplierExample.java
+[086]		3.1.4 Predicate
+					figure-3-4/PredicateExample.java
+[087]	3.2 함수형 인터페이스 변형이 많은 이유
+[087]		3.2.1 함수 아리티
+					[ex-3-1] 자바 아리티 호환성
+[090]		3.2.2 원시 타입
+[092]		3.2.3 함수형 인터페이스 브리징
+					bridging-functional-interfaces/BridgingFunctionalInterfaces.java
+[094]	3.3 함수 합성
+					[ex-3-2] 함수 합성 방향
+[096]	3.4 함수형 지원 확장
+[097]		3.4.1 기본 메서드 추가
+					[ex-3-3] 기본 메서드 계층
+[099]		3.4.2 함수형 인터페이스 명시적으로 구현하기
+[101]		3.4.3 정적 헬퍼 생성하기
+					[ex-3-4] 간단한 Function<T,R> 인터페이스
+					[ex-3-5] 함수형 컴포지터
+					[ex-3-6] 함수형 컴포지터 활용
+[106]	핵심 요약
+
+=====	========================================
+		[PART Ⅱ 함수형 접근 방식]
+
+=====	========================================
+		CHAPTER 4 불변성
+
+[110]	4.1 객체 지향 프로그래밍의 가변성과 자료 구조
+[112]	4.2 함수형 프로그래밍의 불변성
+[114]	4.3 자바 불변성 상태
+[115]		4.3.1 java.lang.String
+[117]		4.3.2 불변 컬렉션
+[118]			= 변경할 수 없는 컬렉션 unmodifiable collection
+					unmodifiable-collections/ExceptionThrown.java
+					unmodifiable-collections/UnmodifiableListModifyOriginal.java
+[120]			= 불변 컬렉션 팩토리 메서드
+[120]			= 불변 복제 immutable copy
+					immutable-copy/ImmutableCopy.java
+[122]		4.3.3 원시 타입과 원시 래퍼
+[123]		4.3.4 불변 수학
+					immutable-math/ImmutableMath.java
+[124]		4.3.5 자바 시간 API (JSR-310)
+[125]		4.3.6 enum
+[125]		4.3.7 final 키워드
+					[ex-4-1] 컬렉션과 final 참조
+[127]		4.3.8 레코드
+[128]	4.4 불변성 만들기
+[129]		4.4.1 일반적인 관행
+[130]	핵심 요약
+
+=====	========================================
+		CHAPTER 5 레코드
+
+[132]	5.1 데이터 집계 유형
+[132]		5.1.1 튜플
+					tuples/tuples.py
+					tuples/tuples.swift
+[134]		5.1.2 간단한 POJO
+					[ex-5-1] 간단한 User POJP
+[137]		5.1.3 불변 POJO 만들기
+					[ex-5-2] 간단한 불변 user 타입
+[138]		5.1.4 POJO를 레코드로 만들기
+[139]	5.2 도움을 주기 위한 레코드
+[141]		5.2.1 내부 동작
+					[ex-5-3] 디스어셈블된 User.class POJO와 레코드 비교
+[143]		5.2.2 레코드의 특징
+[143]			= 컴포넌트 접근자
+					record-features/OverrideComponentAccessor.java
+[145]			= 표준, 간결, 사용자 정의 생성자
+					record-features/CanonicalConstructor.java
+					record-features/CompactConstructor.java
+[147]			= 객체 식별과 설명
+[147]			= 제네릭
+					record-features/Generics.java
+[148]			= 어노테이션
+[148]			= 리플렉션
+[149]		5.2.3 누락된 기능
+[149]			= 추가적인 상태
+					record-features/DerivedState.java
+[150]			= 상속
+					[ex-5-4] 템플릿으로 레코드와 인터페이스 사용하기
+[152]			= 컴포넌트의 기본값과 컴팩트 생성자
+					[ex-5-5] 복합 자료 구조에서의 표준 생성자
+					[ex-5-6] 디폴트 값을 위한 사용자 정의 생성자
+					missing-record-features/FactoryMethods.jav
+[155]			= 단계별 생성
+					[ex-5-7] 빌더
+					[ex-5-8] 내부 빌더
+
+[158]	5.3 사용 사례와 일반적인 관행
+[158]		5.3.1 레코드 유효성 검사 및 데이터 정제
+					record-use-cases-common-practices/Validation.java
+					record-use-cases-common-practices/DataScrubbing.java
+[160]		5.3.2 불변성 강화
+					record-use-cases-common-practices/IncreaseImmutability.java
+[161]		5.3.3 변형된 복사본 생성
+[161]			= wither 메서드
+					record-wither/Wither.java
+					record-wither/WitherNested.java
+[163]			= 빌더 패턴
+					record-use-cases-common-practices/BuilderPatternCopy.java
+[164]			= 도구 지원 빌더
+[166]		5.3.4 명목상 튜플로서의 로컬 레코드
+					[ex-5-9] 로컬 레코드를 사용한 스트림 파이프라인
+[171]		5.3.5 Optional 데이터 처리
+[172]			= null 이 아닌 컨테이너 확보
+					record-optional-data-handling/NonNullContainer.java
+[172]			= 컴팩트 생성자 추가
+					record-optional-data-handling/ConvenienceConstructor.java
+[173]		5.3.6 레코드의 진화된 직렬화
+					serializing-evolving-records/PointSerialization.java
+[177]		5.3.7 레코드 패턴 매칭 (자바 19+)
+[179]	5.4 레코드를 마무리하며
+[180]	핵심 요약
+
+[???]				[ex-5-10] Group membership as sealed types instead of Optional<String>
+[???]				[ex-5-11] User Record with sealed interface Membership
+
+=====	========================================
+		CHAPTER 6 스트림을 이용한 데이터 처리
+
+[182]	6.1 반복을 통한 데이터 처리
+[183]		6.1.1 외부 반복
+					[ex-6-1] for-loop 를 사용하여 책 찾기
+[186]		6.1.2 내부 반복
+[187]	6.2 함수형 데이터 파이프라인으로써의 스트림
+					[ex-6-2] 스트림을 활용한 책 찾기
+[192]		6.2.1 스트림의 특성
+[192]			= 느긋한 계산법
+[193]			= (대부분) 상태 및 간섭 없음
+[194]			= 최적화
+[195]			= 보일러 플레이트 최소화
+[195]			= 재사용 불가능
+[195]			= 원시 스트림
+[196]			= 쉬운 병렬화
+[196]			= 예외 처리의 한계
+[197]		6.2.2 스트림의 핵심, Spliterator
+					[ex-6-3] java.util.Spliterator 인터페이스
+					[ex-6-4] HashSet 의 Spliterator 특성
+[201]	6.3 스트림 파이프라인 구축하기
+[202]		6.3.1 스트림 생성하기
+					[ex-6-5] Collection<E> 타입을 위한 간소화된 스트림 생성
+[203]		6.3.2 실습하기
+					[ex-6-6] 간단한 Shape 타입
+[205]			= 요소 선택
+[209]			= 요소 매핑
+					[ex-6-7] flatMap 對 mapMulti
+[212]			= 스트림에서 Peek 사용
+					[ex-6-8] 스트림에서 Peek 사용하기
+[213]		6.3.3 스트림 종료하기
+[213]			= 요소 축소
+					[ex-6-9] 컬렉션에서 가장 큰 수 찾기
+					[ex-6-10] Reduce 와 유사한 for-loop
+					[ex-6-10] reduce 를 쓴 가장 큰 수 찾기
+					[ex-6-11] 인수 3개 짜리 reduce 對 인수 2개 짜리 reduce (+ map)
+[219]			= 컬렉터를 활용한 요소 집계
+					[ex-6-12] reduce 연산으로 요소 집계
+[225]			= 요소 수집과 축소 비교
+					[ex-6-13] 스트림을 사용한 숫자의 불변 누적
+					[ex-6-14] reduce 와 collect 로 문자열 연결
+[228]			= 요소를 직접 집계하기
+[229]			= 요소 찾기 및 매칭시키기
+[230]			= 요소 소비
+[231]		6.3.4 연산 비용
+					[ex-6-15] 파이프라인 (naive)
+					[ex-6-16] 개선된 파이프라인
+					short-circuit/Dropped.java
+					short-circuit/NotDropped.java
+[235]		6.3.5 스트림 동작 변경하기
+[235]	6.4 스트림 사용 여부 선택
+[239]	핵심 요약
+
+=====	========================================
+		CHAPTER 7 스트림 사용하기
+
+[240]	7.1 원시 스트림
+[243]	7.2 반복 스트림
+					streams-iteration/Java8.java
+					streams-iteration/Java9.java
+[246]	7.3 무한 스트림
+					streams-infinite/InfiniteStreams.java
+[247]		7.3.1 랜덤 숫자
+[249]		7.3.2 메모리는 한정되어 있다
+[250]	7.4 배열에서 스트림으로, 그리고 다시 배열로
+[250]		7.4.1 객체 타입 배열
+					streams-toarray/ObjectStreamToArray.java
+[252]		7.4.2 원시 타입 배열
+					streams-toarray/PrimitiveStreamToarray.java
+[252]	7.5 저수준 스트림 생성
+[254]	7.6 파일 I/O 사용하기
+[255]		7.6.1 디렉토리 내용 읽기
+					[ex-7-1] 디렉토리 항목 나열
+[256]		7.6.2 깊이 우선 디렉토리 순회
+					[ex-7-2] 파일 시스템 순회
+[258]		7.6.3 파일 시스템 탐색하기
+					[ex-7-3] 파일 찾기
+[259]		7.6.4 파일 한 줄씩 읽기
+					[ex-7-4] 단어 수 세기
+[261]		7.6.5 파일 I/O 스트림 사용 시 주의 사항
+[262]			= 스트림 닫기
+[263]			= 보장되지 않는 요소 순서
+[263]	7.7 날짜와 시간 처리하기
+[263]		7.7.1 시간 타입 질의하기
+					streams-temporal-query/TemporalQuery.java
+[265]		7.7.2 LocalDate 범위 스트림
+[265]	7.8 JMH를 활용하여 스트림 성능 측정하기
+[266]	7.9 컬렉터 알아보기
+[267]		7.9.1 다운스트림 컬렉터
+[268]			= 요소 변환
+[268]				streams-downstream-collectors/GroupBySimple.java
+[271]				streams-downstream-collectors/GroupByMapping.java
+[272]			= 요소 축소
+[273]				streams-downstream-collectors/ReduceSum.java
+[274]			= 컬렉션 평탄화
+[275]				streams-downstream-collectors/Flatten.java
+[275]			= 요소 필터링
+[275]				streams-downstream-collectors/Filter.java
+[278]			= 합성 컬렉터
+					[ex-7-5] 로그인 날짜 최소 최대 찾기
+[280]		7.9.2 나만의 컬렉터 만들기
+					[ex-7-6] 문자열 요소를 연결하기 위한 사용자 정의 컬렉터
+[283]	7.10 (순차적인) 스트림에 대한 고찰
+[284]	핵심 요약
+
+=====	========================================
+		CHAPTER 8 스트림을 활용한 병렬 데이터 처리
+
+[285]	8.1 동시성 vs 병렬성
+[288]	8.2 병렬 함수 파이프라인으로써의 스트림
+[290]	8.3 병렬 스트림 활용
+					[ex-8-1] 순차 단어 집계
+					[ex-8-2] 병렬 단어 집계
+[294]	8.4 병렬 스트림 활용 시기와 주의할 점
+[295]		8.4.1 적절한 데이터 소스 선택하기
+[296]		8.4.2 요소의 개수
+[297]		8.4.3 스트림 연산
+[297]			= 순수한 람다
+[299]			= 병렬 처리에 적합한 연산
+[300]			= Reduce vs Collect
+[303]		8.4.4 스트림 오버헤드와 사용 가능한 자원
+[304]		8.4.5 예시: 전쟁과 평화 (재분석)
+[306]		8.4.6 예시: 랜덤 숫자
+					[ex-8-5] 랜덤 숫자 통계
+[309]		8.4.7 병렬 스트림 체크리스트
+[310]	핵심 요약
+
+=====	========================================
+		CHAPTER 9 Optional을 사용한 null 처리
+
+[313]	9.1 null 참조의 문제점
+					[ex-9-1] null 지뢰밭
+					[ex-9-2] null 타입의 모호성
+[316]	9.2 자바에서 null을 다루는 방법 (Optional 도입 전)
+[317]		9.2.1 null 처리 모범 사례
+					dos-and-donts/dos-and-donts.jsh
+[317]			= 변수를 null로 초기화하지 않도록 주의하기
+[318]			= null 값을 전달하거나 수용 또는 반환하지 않아야 한다
+[319]			= 통제할 수 없는 모든 것을 확인하기
+[319]			= null은 내부 구혐에서는 허용된다
+[320]			= 규칙을 지켜야 할 때와 그렇지 않을 때
+[320]		9.2.2 도구를 활용한 null 검사
+					[ex-9-3] 어노테이션을 이용한 null 처리
+[322]		9.2.3 Optional과 같은 특별한 타입
+[323]	9.3 Optional 알아보기
+[323]		9.3.1 Optional이란 무엇인가?
+					[ex-9-4] Optional 없이 내용 불러오기
+					[ex-9-5] Optional 호출 체인을 사용하여 내용 불러오기
+[328]		9.3.2 Optional 파이프라인 구축하기
+[329]			= Optional 생성
+[331]			= 값을 확인하고 대응하기
+					[ex-9-6] Optional 값 확인
+[332]			= 필터링과 매핑
+					[ex-9-7] Optional 중간 연산 -- 권한 있는 액티브 관리자 찾기
+					[ex-9-8] Optional 없이 -- 권한 있는 액티브 관리자 찾기
+[336]			= (대체) 값 가져오기
+[337]	9.4 Optional과 스트림
+[338]		9.4.1 Optional을 스트림 요소로 활용하기
+					[ex-9-9] 스트림 요소 Optional
+					[ex-9-10] 스트림 요소 Optional 에 flatMap을 사용
+[340]		9.4.2 스트림의 최종 연산
+[340]			= 요소 찾기
+[341]			= 단일값으로 줄이기
+					[ex-9-11] reduce 연산의 의사 코드
+[343]	9.5 원시 타입용 Optional
+[344]	9.6 주의 사항
+[344]		9.6.1 Optional은 일반적인 타입이다
+[345]		9.6.2 식별자에 민감한 메서드
+[346]		9.6.3 성능 오버헤드
+[347]		9.6.4 컬렉션에 대한 고려 사항
+[348]		9.6.5 Optional과 직렬화
+					[ex-9-12] Serializable 타입에서 Optional 사용
+[349]	9.7 null 참조에 대한 생각
+[350]	핵심 요약
+
+=====	========================================
+		CHAPTER 10 함수형 예외 처리
+
+[353]	10.1 자바 예외 처리 핵심 요약
+[353]	10.2 try-catch 블록
+					try-catch/TryCatch.jav
+[354]		10.2.1 예외와 에러의 다양한 유형
+[354]			= 체크 예외
+[355]			= 언체크 예외
+[356]			= 에러
+[356]			= 자바에서의 예외 계층 구조
+[357]	10.3 람다에서의 체크 예외
+					files-read-string/FilesReadString.java
+					files-read-string/FilesReadStringTryCatch.java
+[360]		10.3.1 안전한 메서드 추출
+					[ex-10-1] 안전 메서드 -- 안에서 예외를 처리
+[361]		10.3.2 언체크 예외
+					[ex-10-2] ThrowingFunction
+[363]		10.3.3 몰래 던지기
+					sneaky-throws/SneakyThrows.java
+[366]	10.4 함수형으로 예외 다루기
+[366]		10.4.1 예외를 발생시키지 않기
+					[ex-10-4] IOException 을 던지는 대신 Optional<String> 을 사용
+[368]		10.4.2 값으로서의 예러
+					errors-as-values/errors-as-values.go
+[368]			= 스캐폴드 생성하기
+					[ex-10-5] 전통적인 결과 객체
+					[ex-10-6] 리턴 타입으로 Result<V,E> 를 사용
+[370]			= Result<V,E> 를 함수형으로 만들기
+					[ex-10-7] Result<V,E> 에 변환기 추가 -- mapSuccess, mapFailure, map
+					result-reactions-fallback/ResultReactionsFallback.java -- ifSuccess, ifFailure, handle, orElse, orElseGet, orElseThrow
+[375]		10.4.3 Try/Success/Failure 패턴
+					[ex-10-8] Scala 의 Try/Success/Failure 패턴
+[377]			= 파이프라인 생성
+					[ex-10-9] 람다와 예외 핸들러를 받아들이는 미니멀 Try<T,R>
+[379]			= 성공과 실패 처리하기
+					[ex-10-10] Try<T,R> 에서 성공과 실패 처리하기
+[381]			= 파이프라인 실행하기
+					[ex-10-11] Try<T,R> 에 값 적용하기
+					[ex-10-12] Function<T, Optional<R>> 구현
+[384]	10.5 함수형 예외 처리에 대한 고찰
+[385]	핵심 요약
+
+=====	========================================
+		CHAPTER 11 느긋한 계산법 (지연 평가)
+
+[386]	11.1 느긋함 vs 엄격함
+					[ex-11-1] 공급자를 사용한 lazy 계산
+[389]	11.2 자바는 얼마나 엄격한가?
+[389]		11.2.1 단축 평가 계산
+					[ex-11-2] 논리 평가 단축 연산
+[391]		11.2.2 제어 구조
+[391]		11.2.3 JDK에서의 느긋한 타입
+[391]				= 느긋한 Map
+						lazy-maps/NonLazy.java
+						lazy-maps/Lazy.java
+[393]				= 스트림
+[394]				= Optional
+[394]	11.3 람다와 고차 함수
+[394]		11.3.1 열정적인 접근 방식
+					[ex-11-3] eager 메서드 인수를 사용해 사용자를 업데이트
+[395]		11.3.2 느긋한 접근 방식
+[396]		11.3.3 함수형 접근 방식
+					[ex-11-4] 람다를 써서 사용자를 업데이트
+[398]	11.4 썽크를 사용한 지연 실행
+[399]		11.4.1 간단한 썽크 만들기
+					[ex-11-5] 간단한 Thunk<T> 구현
+					[ex-11-6] 함수형으로 확장한 Thunk<T>
+[401]		11.4.2 안전한 스레드 썽크
+					[ex-11-7] 동기화된 평가를 이용한 Thunk<T>
+[405]	11.5 느긋함에 대한 고찰
+[406]	핵심 요약
+
+=====	========================================
+		CHAPTER 12 재귀
+
+[408]	12.1 재귀란 무엇인가?
+[410]		12.1.1 머리 재귀와 꼬리 재귀
+					[ex-12-1] 헤드 재귀를 사용한 팩토리얼 계산
+					[ex-12-2] 테일 재귀를 사용한 팩토리얼 계산
+[412]		12.1.2 재귀와 호출 스택
+[414]	12.2 더 복잡한 예시
+					[ex-12-3] 트리 노드 구조
+[416]		12.2.1 반복적인 트리 순회
+					[ex-11-4] 반복적인 트리 순회
+[417]		12.2.2 재귀적인 트리 순회
+					[ex-12-5] 재귀적인 트리 순회
+					[ex-12-6] 순회 메서드로 확장한 노드
+[420]	12.3 재귀와 유사한 스트림
+					stream-recursion/stream-recursion.md
+[420]	12.4 재귀에 대한 고찰
+[422]	핵심 요약
+
+=====	========================================
+		CHAPTER 13 비동기 작업
+
+[423]	13.1 동기 vs 비동기
+[425]	13.2 자바의 Future
+					[ex-13-1] Future<T> 실행 흐름
+[427]	13.3 CompletableFutures로 비동기 파이프라인 구축
+[428]		13.3.1 값에 대한 프로미스
+[429]		13.3.2 CompletableFuture 생성
+					[ex-13-2] CompletableFuture 생성
+[430]		13.3.3 작업 합성 및 결합
+[432]			= 작업 합성
+					[ex-13-3] 비동기 북마크 관리자 워크플로
+[433]			= 작업 결합
+					[ex-13-4] 중첩된 단계 풀기
+[435]			= 동시에 여러 CompletableFuture 인스턴스 실행하기
+[436]		13.3.4 예외 처리
+[437]			= 데이터 및 오류 채널에 대한 고찰
+[438]			= 거부된 either 작업
+					[ex-13-5] either 연산과 거부된 단계
+[439]		13.3.5 종료 연산
+[440]		13.3.6 CompletableFuture Helper 생성
+[441]			= 헬퍼 스캐폴드
+[441]			= eachOf 설계
+					[ex-13-6] eachOf 구현
+[445]			= CompletableFuture 헬퍼 개선하기
+					[ex-13-7] CompletableFutures 리팩토링
+[447]	13.4 수동 생성 및 수동 완료
+[447]		13.4.1 수동 생성
+[448]		13.4.2 수동 완료
+[449]		13.4.3 수동으로 생성 및 완료된 인스턴스 활용 사례
+[449]			= CompletableFuture를 반환값으로 사용하기
+					[ex-13-8] CompletableFuture를 사용한 캐시된 날씨 서비스
+[452]			= 보류중인 CompletableFuture 파이프라인
+					[ex-13-9] 미확정 상태의 CompletableFuture를 활용한 이미지 프로세서 설계
+[454]	13.5 스레드 풀과 타임 아웃의 중요성
+[456]	13.6 비동기 작업에 대한 고찰
+[457]	핵심 요약
+
+=====	========================================
+		CHAPTER 14 비함수형 디자인 패턴
+
+[458]	14.1 디자인 패턴이란?
+[459]	14.2 (함수형) 디자인 패턴
+[459]		14.2.1 팩토리 패턴
+[459]			= 객체 지향 접근 방식
+					factory-pattern-oo/*.java
+[462]			= 더 함수적인 접근 방식
+					factory-pattern-fp/*.java
+[465]		14.2.2 데코레이션 패턴
+[465]			= 객체 지향 접근 방식
+					decorator-pattern-oo/*.java
+[469]			= 더 함수적인 접근 방식
+					decorator-pattern-fp/*.java
+[472]		14.2.3 전략 패턴
+[473]			= 객체 지향 접근 방식
+					strategy-pattern-oo/*.java
+[474]			= 더 함수적인 접근 방식
+					strategy-pattern-fp/*.java
+[476]		14.2.4 빌더 패턴
+[476]			= 객체 지향 접근 방식
+					builder-pattern-oo/*.java
+[479]			= 더 함수적인 접근 방식
+					builder-pattern-fp/*.java
+[482]	14.3 함수형 디자인 패턴에 대한 고찰
+[484]	핵심 요약
+
+=====	========================================
+		CHAPTER 15 자바를 위한 함수형 접근 방식
+
+[486]	15.1 객체 지향 프로그래밍과 함수형 프로그래밍 원칙 비교
+[487]	15.2 함수형 사고방식
+[488]		15.2.1 함수는 일급 객체다
+[489]		15.2.2 사이트 이펙트 피하기
+[490]			= 순수 함수
+[492]			= 순수 객체 메서드
+[494]			= 사이드 이펙트 격리
+[496]			= 문장보다는 표현식을 사용하기
+[497]			= 불변성을 향해 나아가기
+[499]		15.2.3 맵/필터/리듀스를 활용한 데이터 처리
+[500]		15.2.4 추상화 가이드 구현
+[501]		15.2.5 함수형 연결고리 만들기
+[502]			= 메서드 참조 친화적 시그니처
+[502]			= 기존의 함수형 인터페이스 사용
+[504]			= 일반적인 작업을 위한 람다 팩토리
+[506]			= 명시적으로 함수형 인터페이스 구현하기
+[508]			= 함수형 null 처리를 위한 Optional 사용
+[510]		15.2.6 병렬성과 동시성 쉽게 다루기
+[511]		15.2.7 잠재적인 오버헤드에 주의하기
+[512]	15.3 명령형 세계의 함수형 아키텍처
+[514]		15.3.1 객체에서 값으로
+[515]		15.3.2 관심사 분리
+[517]		15.3.3 FC/IS 아키텍처의 다양한 규모
+[518]		15.3.4 FC/IS 테스팅
+[520]	15.4 자바에서 함수형 접근에 대한 고찰
+[522]	핵심 요약
+
+:wq
